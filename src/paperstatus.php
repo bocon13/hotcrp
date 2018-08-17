@@ -776,7 +776,7 @@ class PaperStatus extends MessageSet {
         if ($v === ""
             && (isset($pj->abstract) || !$ps->prow || (string) $ps->prow->abstract === "")) {
             if (!$ps->conf->opt("noAbstract"))
-                $ps->error_at("abstract", $ps->_("Entry required."));
+                $ps->error_at("abstract", $ps->_("Abstract: Entry required."));
         }
         if (!$ps->prow
             || (!$ps->has_error_at("abstract")
@@ -801,7 +801,7 @@ class PaperStatus extends MessageSet {
         $max_authors = $ps->conf->opt("maxAuthors");
         if ((is_array($authors) && empty($authors))
             || ($authors === null && (!$ps->prow || !$ps->prow->author_list())))
-            $ps->error_at("authors", $ps->_("Entry required."));
+            $ps->error_at("authors", $ps->_("Authors: Entry required."));
         if ($max_authors > 0 && is_array($authors) && count($authors) > $max_authors)
             $ps->error_at("authors", $ps->_("Each submission can have at most %d authors.", $max_authors));
         if (!empty($pj->bad_authors))
