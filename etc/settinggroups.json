@@ -162,6 +162,10 @@
         "render_option_property_callback": "Options_SettingRenderer::render_display_property"
     },
     {
+        "name": "options/properties/required", "position": 60,
+        "render_option_property_callback": "Options_SettingRenderer::render_required_property"
+    },
+    {
         "name": "topics", "group": "subform", "position": 480,
         "render_callback": "Topics_SettingRenderer::render"
     },
