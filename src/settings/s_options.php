@@ -72,6 +72,14 @@ class Options_SettingRenderer {
             . $sv->render_messages_at("optec_$xpos")
             . "</span></div>";
     }
+    static function render_required_property(SettingValues $sv, PaperOption $o, $xpos, $self, $gj) {
+        $self->add_option_class("fold9" . ($o->required ? "o" : "c"));
+        return '<div class="' . $sv->control_class("optreq_$xpos", "entryi short fx9")
+            . '">' . $sv->label("optreq_$xpos", "Required")
+            . Ht::select("optreq_$xpos", ["" => "No", "1" => "Yes"], $o->required ? "1" : "", ["id" => "optreq_$xpos"])
+            . $sv->render_messages_at("optreq_$xpos")
+            . "</div>";
+    }
     static function render_visibility_property(SettingValues $sv, PaperOption $o, $xpos, $self, $gj) {
         $self->add_option_class("fold6" . ($o->visibility === "rev" ? "c" : "o"));
         return '<div class="' . $sv->control_class("optp_$xpos", "entryi short fx6")
@@ -90,15 +98,6 @@ class Options_SettingRenderer {
                          $o->display_name(), ["id" => "optdt_$xpos", "class" => "settings-opt-display"])
             . $sv->render_messages_at("optdt_$xpos")
             . "</div>";
-    }
-    static function render_required_property(SettingValues $sv, PaperOption $o, $xpos, $self, $gj) {
-        $self->add_option_class("fold8" . ($o->required ? "o" : "c"));
-        return '<div class="' . $sv->control_class("optreq_$xpos", "entryi short fx8")
-            . '">' . $sv->label("optreq_$xpos", "Required")
-            . '<span class="sep">'
-            . Ht::select("optreq_$xpos", ["true" => "True", "" => "False"], $o->required ? "true" : "", ["class" => "settings-opt-required", "id" => "optreq_$xpos"])
-            . $sv->render_messages_at("optreq_$xpos")
-            . "</span></div>";
     }
     private function render_option(SettingValues $sv, PaperOption $o = null, $xpos) {
         if (!$o) {
@@ -171,7 +170,6 @@ class Options_SettingRenderer {
             Ht::button(Icons::ui_edit_hide(), ["class" => "btn btn-licon ui js-settings-option-presence need-tooltip", "data-tooltip" => "Form status"]),
             Ht::button(Icons::ui_visibility_hide(), ["class" => "btn btn-licon ui js-settings-option-visibility need-tooltip", "data-tooltip" => "Reviewer visibility"]),
             Ht::button(Icons::ui_display(), ["class" => "btn btn-licon ui js-settings-option-display need-tooltip", "data-tooltip" => "Display type"]),
-            Ht::button(Icons::ui_question(), ["class" => "btn btn-licon ui js-settings-option-required need-tooltip", "data-tooltip" => "Required"]),
             '</span>',
             '<span class="btnbox">',
             Ht::button(Icons::ui_movearrow(0), ["class" => "btn btn-licon ui js-settings-option-move moveup need-tooltip", "data-tooltip" => "Change display order"]),

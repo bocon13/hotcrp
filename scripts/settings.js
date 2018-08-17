@@ -57,12 +57,6 @@ handle_ui.on("js-settings-option-display", function (event) {
         $(this).closest(".settings-opt").find(".settings-opt-display").focus();
 });
 
-handle_ui.on("js-settings-option-required", function (event) {
-    foldup.call(this, null, {n: 8, f: false});
-    if (document.activeElement === this)
-        $(this).closest(".settings-opt").find(".settings-opt-required").focus();
-});
-
 handle_ui.on("js-settings-option-move", function (event) {
     var odiv = $(this).closest(".settings-opt")[0];
     if (hasClass(this, "moveup") && odiv.previousSibling)
